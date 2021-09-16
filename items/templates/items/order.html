@@ -1,0 +1,36 @@
+{%extends 'main/layout.html'%}
+{%load static%}
+{%block content%}
+<div class="order">
+    <div class="cart">
+        <li><i class="fas fa-shopping-cart"></i> Корзина </li>
+        <div class="cart-items-block">
+           
+                
+            {% for obj,count in cart %}
+                {% for item_cart in obj %}
+                <div class="cart-item" cart-item-id='{{item_cart.id}}'>
+                    <a href="cart?query=del&item={{item_cart.id}}">X</a>
+                    <img src="{%static item_cart.photo%}" alt="">
+                    <a href="">{{item_cart.title}}</a>
+                    <span>Количество: {{count}}</span>
+                    <span>Цена: {{item_cart.price}} руб.</span>
+                    
+                </div>
+                {% endfor %}
+            {% endfor %}
+            
+    
+        </div>
+    </div>
+    <div class="order_form">
+        <h1>Оформление заказа</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{order_form.as_p}}
+            <button>Заказать</button>
+        </form>
+    </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,62 @@
+{%extends 'main/layout.html'%}
+{% load static %}
+{%block content%}
+    корзина
+    <div class="item_container">
+        <div class="items_filters">
+            <nav class="filters">
+                <li> <i class="fas fa-list"></i> Категории</li>
+                <a href="?">Все</a>
+                {% for key, value in categories.items%}
+                    {{ item.title }}
+                    
+                    <a href="?category={{key}}">{{value}}</a>
+                {% endfor %}
+            </nav>
+            <div class="cart">
+                <li><i class="fas fa-shopping-cart"></i> Корзина </li>
+                <a href="cart?query=clear">Очистить корзину</a>
+                <div class="cart-items-block">
+                   
+                    {%if cart%}
+                        {% for obj,count in cart %}
+                            {% for item_cart in obj %}
+                            <div class="cart-item" cart-item-id='{{item_cart.id}}'>
+                                <img src="{%static item_cart.photo%}" alt="">
+                                <a href="">{{item_cart.title}}</a>
+                                <span>Количество: {{count}}</span>
+                                <span>Цена: {{item_cart.price}} руб.</span>
+                                <a href="cart?query=del&item={{item_cart.id}}"><i class="fas fa-times"></i></a>
+                            </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {%else%}
+                        <span>Ваша корзина пуста</span>   
+                    {%endif%}
+                    
+
+                </div>
+
+            </div>
+            <a href="order/" class="cart-order-button">Оформить заказ</a>
+        </div>
+    
+        <br><br><br>
+        <div class="items_block">
+            {%if object_list%}
+            {% for item in object_list %}
+            <div class="item_card">
+                <h3>{{ item.title }}</h3>
+                <img src="{%static item.photo%}" alt="">
+                <p>{{item.price}} руб.</p>
+                <a id="add_to_cart" href="cart?query=add&item={{item.id}}"><i class="fas fa-cart-plus"></i> В корзину</a>
+            </div>
+
+            {% endfor %}
+        {%else%}
+            <h1>Тут ничего нет :(</h1>
+        {%endif%}
+        </div>
+    </div>
+    
+{%endblock%}

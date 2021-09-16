@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'static/css/main.css' %}">
+    <script src="https://kit.fontawesome.com/fdd99d2539.js" crossorigin="anonymous"></script>
+    <title>CyberStore</title>
+</head>
+<body>
+    <header>
+        <span class="logo">
+            <a href="/">
+                Cyber <span class="logo_on">Store</span>
+            </a>
+        </span>
+        <nav class="navigation">
+            <a href="">Главная</a>
+            <a href="">Каталог</a>
+            <a href="">Акции</a>
+            <a href="">Контакты</a>
+        </nav>
+        <ul class="social">
+            <a href=""><i class="fab fa-vk"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+            <a href=""><i class="fab fa-telegram-plane"></i></a>
+        </ul>
+    </header>
+    {%block content%}
+    {%endblock%}
+    <footer></footer>
+<script>
+var elem = document.querySelector('.logo_on')
+var timer = setInterval(function(){
+  elem.classList.toggle('logo_off')
+},500)
+</script>
+</body>
+</html>
